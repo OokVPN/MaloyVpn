@@ -1,6 +1,43 @@
 [
   {
     "remarks": "🇩🇪Hysteria2",
+    "meta": {
+      "serverDescription": "HYSTERIA / HYSTERIA / TLS"
+    },
+    "inbounds": [
+      {
+        "tag": "socks",
+        "port": 10808,
+        "listen": "127.0.0.1",
+        "protocol": "socks",
+        "settings": {
+          "udp": true,
+          "auth": "noauth"
+        },
+        "sniffing": {
+          "enabled": true,
+          "destOverride": [
+            "http",
+            "tls",
+            "quic"
+          ]
+        }
+      },
+      {
+        "tag": "http",
+        "port": 10809,
+        "listen": "127.0.0.1",
+        "protocol": "http",
+        "sniffing": {
+          "enabled": true,
+          "destOverride": [
+            "http",
+            "tls",
+            "quic"
+          ]
+        }
+      }
+    ],
     "outbounds": [
       {
         "tag": "proxy",
@@ -44,6 +81,48 @@
   },
   {
     "remarks": "🇩🇪VLESS Reality",
+    "meta": {
+      "serverDescription": "VLESS / TCP / REALITY"
+    },
+    "inbounds": [
+      {
+        "tag": "socks",
+        "port": 10808,
+        "listen": "127.0.0.1",
+        "protocol": "socks",
+        "settings": {
+          "udp": true,
+          "auth": "noauth"
+        },
+        "sniffing": {
+          "enabled": true,
+          "routeOnly": false,
+          "destOverride": [
+            "http",
+            "tls",
+            "quic"
+          ]
+        }
+      },
+      {
+        "tag": "http",
+        "port": 10809,
+        "listen": "127.0.0.1",
+        "protocol": "http",
+        "settings": {
+          "allowTransparent": false
+        },
+        "sniffing": {
+          "enabled": true,
+          "routeOnly": false,
+          "destOverride": [
+            "http",
+            "tls",
+            "quic"
+          ]
+        }
+      }
+    ],
     "outbounds": [
       {
         "tag": "proxy",
@@ -65,6 +144,7 @@
         },
         "streamSettings": {
           "network": "tcp",
+          "tcpSettings": {},
           "security": "reality",
           "realitySettings": {
             "serverName": "www.tp-link.com",
@@ -75,7 +155,10 @@
       },
       {
         "tag": "direct",
-        "protocol": "freedom"
+        "protocol": "freedom",
+        "settings": {
+          "domainStrategy": "UseIPv4"
+        }
       },
       {
         "tag": "block",
@@ -89,9 +172,38 @@
   },
   {
     "remarks": "🇩🇪VLESS WS",
+    "meta": {
+      "serverDescription": "VLESS / WS / TLS"
+    },
+    "inbounds": [
+      {
+        "listen": "127.0.0.1",
+        "port": 10808,
+        "protocol": "socks",
+        "settings": {
+          "auth": "noauth",
+          "udp": true,
+          "userLevel": 8
+        },
+        "sniffing": {
+          "destOverride": [
+            "http",
+            "tls",
+            "quic"
+          ],
+          "enabled": true
+        },
+        "tag": "socks"
+      }
+    ],
     "outbounds": [
       {
-        "tag": "proxy",
+        "mux": {
+          "concurrency": -1,
+          "enabled": false,
+          "xudpConcurrency": 8,
+          "xudpProxyUDP443": ""
+        },
         "protocol": "vless",
         "settings": {
           "vnext": [
@@ -100,9 +212,9 @@
               "port": 443,
               "users": [
                 {
-                  "id": "365de9e9-ba29-4819-af2d-766f9638e3be",
                   "encryption": "none",
                   "flow": "",
+                  "id": "365de9e9-ba29-4819-af2d-766f9638e3be",
                   "level": 8,
                   "security": "auto"
                 }
@@ -127,20 +239,72 @@
             },
             "path": "/e8ws"
           }
+        },
+        "tag": "proxy"
+      },
+      {
+        "protocol": "freedom",
+        "tag": "direct"
+      },
+      {
+        "protocol": "blackhole",
+        "tag": "block"
+      }
+    ],
+    "policy": {
+      "levels": {
+        "8": {
+          "connIdle": 300,
+          "downlinkOnly": 1,
+          "handshake": 4,
+          "uplinkOnly": 1
         }
       },
-      {
-        "tag": "direct",
-        "protocol": "freedom"
-      },
-      {
-        "tag": "block",
-        "protocol": "blackhole"
+      "system": {
+        "statsOutboundUplink": true,
+        "statsOutboundDownlink": true
       }
-    ]
+    }
   },
   {
     "remarks": "🇩🇪VMess WS",
+    "meta": {
+      "serverDescription": "VMESS / WS / TLS"
+    },
+    "inbounds": [
+      {
+        "tag": "socks",
+        "port": 10808,
+        "listen": "127.0.0.1",
+        "protocol": "socks",
+        "settings": {
+          "udp": true,
+          "auth": "noauth"
+        },
+        "sniffing": {
+          "enabled": true,
+          "destOverride": [
+            "http",
+            "tls",
+            "quic"
+          ]
+        }
+      },
+      {
+        "tag": "http",
+        "port": 10809,
+        "listen": "127.0.0.1",
+        "protocol": "http",
+        "sniffing": {
+          "enabled": true,
+          "destOverride": [
+            "http",
+            "tls",
+            "quic"
+          ]
+        }
+      }
+    ],
     "outbounds": [
       {
         "tag": "proxy",
@@ -184,6 +348,44 @@
   },
   {
     "remarks": "🇩🇪Trojan WS",
+    "meta": {
+      "serverDescription": "TROJAN / WS / TLS"
+    },
+    "inbounds": [
+      {
+        "tag": "socks",
+        "port": 10808,
+        "listen": "127.0.0.1",
+        "protocol": "socks",
+        "settings": {
+          "udp": true,
+          "auth": "noauth"
+        },
+        "sniffing": {
+          "enabled": true,
+          "destOverride": [
+            "http",
+            "tls",
+            "quic"
+          ]
+        }
+      },
+      {
+        "tag": "http",
+        "port": 10809,
+        "listen": "127.0.0.1",
+        "protocol": "http",
+        "settings": {},
+        "sniffing": {
+          "enabled": true,
+          "destOverride": [
+            "http",
+            "tls",
+            "quic"
+          ]
+        }
+      }
+    ],
     "outbounds": [
       {
         "tag": "proxy",
@@ -221,6 +423,43 @@
   },
   {
     "remarks": "🇩🇪Shadowsocks",
+    "meta": {
+      "serverDescription": "SHADOWSOCKS / TCP"
+    },
+    "inbounds": [
+      {
+        "tag": "socks",
+        "port": 10808,
+        "listen": "127.0.0.1",
+        "protocol": "socks",
+        "settings": {
+          "udp": true,
+          "auth": "noauth"
+        },
+        "sniffing": {
+          "enabled": true,
+          "destOverride": [
+            "http",
+            "tls",
+            "quic"
+          ]
+        }
+      },
+      {
+        "tag": "http",
+        "port": 10809,
+        "listen": "127.0.0.1",
+        "protocol": "http",
+        "sniffing": {
+          "enabled": true,
+          "destOverride": [
+            "http",
+            "tls",
+            "quic"
+          ]
+        }
+      }
+    ],
     "outbounds": [
       {
         "tag": "proxy",
@@ -234,9 +473,6 @@
               "password": "testpass"
             }
           ]
-        },
-        "streamSettings": {
-          "network": "tcp"
         }
       },
       {
