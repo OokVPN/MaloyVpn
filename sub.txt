@@ -1,3 +1,13 @@
 #profile-title: Subscription
 #profile-webpage: https://t.me/MaloyVpn67
 #subscription-userinfo: upload=0; download=488968626176; total=0
+
+vless://00000000-0000-0000-0000-000000000000@example.invalid:443?flow=xtls-rprx-vision&encryption=none&security=reality&sni=www.example.com&fp=chrome&pbk=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&sid=deadbeef&type=tcp&headerType=none#%F0%9F%87%A9%F0%9F%87%AAVLESS%20Reality
+
+vless://00000000-0000-0000-0000-000000000000@example.invalid:443?encryption=none&security=tls&sni=example.invalid&type=ws&host=example.invalid&path=%2Fws#%F0%9F%87%A9%F0%9F%87%AAVLESS%20WS
+
+vmess://eyJhZGQiOiJleGFtcGxlLmludmFsaWQiLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6ImV4YW1wbGUuaW52YWxpZCIsImlkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAtMDAwMC0wMDAwMDAwMDAwMCIsIm5ldCI6IndzIiwicGF0aCI6Ii93cyIsInBvcnQiOiI0NDMiLCJwcyI6IvCfh6nwn4eqVk1lc3MgV1MiLCJzY3kiOiJhdXRvIiwic25pIjoiZXhhbXBsZS5pbnZhbGlkIiwidGxzIjoidGxzIiwidHlwZSI6IiIsInYiOiIyIn0=
+
+trojan://testpassword@example.invalid:443?security=tls&sni=example.invalid&type=ws&host=example.invalid&path=%2Fws#%F0%9F%87%A9%F0%9F%87%AA%20Trojan%20WS
+
+ss://aes-256-gcm:testpass@example.invalid:443#%F0%9F%87%A9%F0%9F%87%AAShadowsocks
