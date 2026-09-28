@@ -1,5 +1,5 @@
 #profile-title: Subscription
-#profile-webpage: https://t.me/MaloyVpn67
+#support-url: https://t.me/MaloyVpn67
 #subscription-userinfo: upload=0; download=488968626176; total=0
 
 vless://00000000-0000-0000-0000-000000000000@example.invalid:443?flow=xtls-rprx-vision&encryption=none&security=reality&sni=www.example.com&fp=chrome&pbk=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&sid=deadbeef&type=tcp&headerType=none#%F0%9F%87%A9%F0%9F%87%AAVLESS%20Reality
