@@ -1,0 +1,25 @@
+{
+  "headers": [
+    {
+      "source": "/sub.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "profile-title",
+          "value": "Subscription"
+        },
+        {
+          "key": "support-url",
+          "value": "https://t.me/MaloyVpn67"
+        },
+        {
+          "key": "subscription-userinfo",
+          "value": "upload=0; download=488968626176; total=0"
+        }
+      ]
+    }
+  ]
+}
