@@ -1,164 +1,128 @@
 [
   {
     "remarks": "🇩🇪Hysteria2",
-    "protocol": "hysteria",
-    "settings": {
-      "address": "bu-ge-hy.cloud-files.app",
-      "port": 443,
-      "version": 2
-    },
-    "streamSettings": {
-      "network": "hysteria",
-      "hysteriaSettings": {
-        "version": 2,
-        "auth": "052d0bc5-02de-426e-986d-b6528cd41380"
-      },
-      "security": "tls",
-      "tlsSettings": {
-        "serverName": "bu-ge-hy.cloud-files.app",
-        "fingerprint": "firefox",
-        "alpn": [
-          "h3"
-        ]
-      },
-      "finalmask": {
-        "quicParams": {
-          "debug": false,
-          "congestion": "bbr"
+    "inbounds": [
+      {"tag":"socks","port":10808,"listen":"127.0.0.1","protocol":"socks","settings":{"udp":true,"auth":"noauth"},"sniffing":{"enabled":true,"destOverride":["http","tls","quic"]}},
+      {"tag":"http","port":10809,"listen":"127.0.0.1","protocol":"http","sniffing":{"enabled":true,"destOverride":["http","tls","quic"]}}
+    ],
+    "outbounds": [
+      {
+        "tag": "proxy",
+        "protocol": "hysteria",
+        "settings": {"address":"bu-ge-hy.cloud-files.app","port":443,"version":2},
+        "streamSettings": {
+          "network": "hysteria",
+          "hysteriaSettings": {"version":2,"auth":"052d0bc5-02de-426e-986d-b6528cd41380"},
+          "security": "tls",
+          "tlsSettings": {"serverName":"bu-ge-hy.cloud-files.app","fingerprint":"firefox","alpn":["h3"]},
+          "finalmask": {"quicParams":{"debug":false,"congestion":"bbr"}}
         }
-      }
-    }
+      },
+      {"tag":"direct","protocol":"freedom"},
+      {"tag":"block","protocol":"blackhole"}
+    ]
   },
   {
     "remarks": "🇩🇪VLESS Reality",
-    "protocol": "vless",
-    "settings": {
-      "vnext": [
-        {
-          "address": "example.invalid",
-          "port": 443,
-          "users": [
-            {
-              "id": "00000000-0000-0000-0000-000000000000",
-              "encryption": "none",
-              "flow": "xtls-rprx-vision"
-            }
-          ]
+    "inbounds": [
+      {"tag":"socks","port":10808,"listen":"127.0.0.1","protocol":"socks","settings":{"udp":true,"auth":"noauth"},"sniffing":{"enabled":true,"destOverride":["http","tls","quic"]}},
+      {"tag":"http","port":10809,"listen":"127.0.0.1","protocol":"http","sniffing":{"enabled":true,"destOverride":["http","tls","quic"]}}
+    ],
+    "outbounds": [
+      {
+        "tag": "proxy",
+        "protocol": "vless",
+        "settings": {"vnext":[{"address":"example.invalid","port":443,"users":[{"id":"00000000-0000-0000-0000-000000000000","encryption":"none","flow":"xtls-rprx-vision"}]}]},
+        "streamSettings": {
+          "network": "tcp",
+          "security": "reality",
+          "realitySettings": {"serverName":"www.example.com","fingerprint":"chrome","publicKey":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","shortId":"deadbeef"}
         }
-      ]
-    },
-    "streamSettings": {
-      "network": "tcp",
-      "security": "reality",
-      "realitySettings": {
-        "serverName": "www.example.com",
-        "fingerprint": "chrome",
-        "publicKey": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        "shortId": "deadbeef"
-      }
-    }
+      },
+      {"tag":"direct","protocol":"freedom"},
+      {"tag":"block","protocol":"blackhole"}
+    ]
   },
   {
     "remarks": "🇩🇪VLESS WS",
-    "protocol": "vless",
-    "settings": {
-      "vnext": [
-        {
-          "address": "example.invalid",
-          "port": 443,
-          "users": [
-            {
-              "id": "00000000-0000-0000-0000-000000000000",
-              "encryption": "none"
-            }
-          ]
+    "inbounds": [
+      {"tag":"socks","port":10808,"listen":"127.0.0.1","protocol":"socks","settings":{"udp":true,"auth":"noauth"},"sniffing":{"enabled":true,"destOverride":["http","tls","quic"]}},
+      {"tag":"http","port":10809,"listen":"127.0.0.1","protocol":"http","sniffing":{"enabled":true,"destOverride":["http","tls","quic"]}}
+    ],
+    "outbounds": [
+      {
+        "tag": "proxy",
+        "protocol": "vless",
+        "settings": {"vnext":[{"address":"example.invalid","port":443,"users":[{"id":"00000000-0000-0000-0000-000000000000","encryption":"none"}]}]},
+        "streamSettings": {
+          "network": "ws",
+          "security": "tls",
+          "tlsSettings": {"serverName":"example.invalid"},
+          "wsSettings": {"path":"/ws","host":"example.invalid"}
         }
-      ]
-    },
-    "streamSettings": {
-      "network": "ws",
-      "security": "tls",
-      "tlsSettings": {
-        "serverName": "example.invalid"
       },
-      "wsSettings": {
-        "path": "/ws",
-        "headers": {
-          "Host": "example.invalid"
-        }
-      }
-    }
+      {"tag":"direct","protocol":"freedom"},
+      {"tag":"block","protocol":"blackhole"}
+    ]
   },
   {
     "remarks": "🇩🇪VMess WS",
-    "protocol": "vmess",
-    "settings": {
-      "vnext": [
-        {
-          "address": "example.invalid",
-          "port": 443,
-          "users": [
-            {
-              "id": "00000000-0000-0000-0000-000000000000",
-              "alterId": 0,
-              "security": "auto"
-            }
-          ]
+    "inbounds": [
+      {"tag":"socks","port":10808,"listen":"127.0.0.1","protocol":"socks","settings":{"udp":true,"auth":"noauth"},"sniffing":{"enabled":true,"destOverride":["http","tls","quic"]}},
+      {"tag":"http","port":10809,"listen":"127.0.0.1","protocol":"http","sniffing":{"enabled":true,"destOverride":["http","tls","quic"]}}
+    ],
+    "outbounds": [
+      {
+        "tag": "proxy",
+        "protocol": "vmess",
+        "settings": {"vnext":[{"address":"example.invalid","port":443,"users":[{"id":"00000000-0000-0000-0000-000000000000","alterId":0,"security":"auto"}]}]},
+        "streamSettings": {
+          "network": "ws",
+          "security": "tls",
+          "tlsSettings": {"serverName":"example.invalid"},
+          "wsSettings": {"path":"/ws","host":"example.invalid"}
         }
-      ]
-    },
-    "streamSettings": {
-      "network": "ws",
-      "security": "tls",
-      "tlsSettings": {
-        "serverName": "example.invalid"
       },
-      "wsSettings": {
-        "path": "/ws",
-        "headers": {
-          "Host": "example.invalid"
-        }
-      }
-    }
+      {"tag":"direct","protocol":"freedom"},
+      {"tag":"block","protocol":"blackhole"}
+    ]
   },
   {
     "remarks": "🇩🇪Trojan WS",
-    "protocol": "trojan",
-    "settings": {
-      "servers": [
-        {
-          "address": "example.invalid",
-          "port": 443,
-          "password": "testpassword"
+    "inbounds": [
+      {"tag":"socks","port":10808,"listen":"127.0.0.1","protocol":"socks","settings":{"udp":true,"auth":"noauth"},"sniffing":{"enabled":true,"destOverride":["http","tls","quic"]}},
+      {"tag":"http","port":10809,"listen":"127.0.0.1","protocol":"http","sniffing":{"enabled":true,"destOverride":["http","tls","quic"]}}
+    ],
+    "outbounds": [
+      {
+        "tag": "proxy",
+        "protocol": "trojan",
+        "settings": {"servers":[{"address":"example.invalid","port":443,"password":"testpassword"}]},
+        "streamSettings": {
+          "network": "ws",
+          "security": "tls",
+          "tlsSettings": {"serverName":"example.invalid"},
+          "wsSettings": {"path":"/ws","host":"example.invalid"}
         }
-      ]
-    },
-    "streamSettings": {
-      "network": "ws",
-      "security": "tls",
-      "tlsSettings": {
-        "serverName": "example.invalid"
       },
-      "wsSettings": {
-        "path": "/ws",
-        "headers": {
-          "Host": "example.invalid"
-        }
-      }
-    }
+      {"tag":"direct","protocol":"freedom"},
+      {"tag":"block","protocol":"blackhole"}
+    ]
   },
   {
     "remarks": "🇩🇪Shadowsocks",
-    "protocol": "shadowsocks",
-    "settings": {
-      "servers": [
-        {
-          "address": "example.invalid",
-          "port": 443,
-          "method": "aes-256-gcm",
-          "password": "testpass"
-        }
-      ]
-    }
+    "inbounds": [
+      {"tag":"socks","port":10808,"listen":"127.0.0.1","protocol":"socks","settings":{"udp":true,"auth":"noauth"},"sniffing":{"enabled":true,"destOverride":["http","tls","quic"]}},
+      {"tag":"http","port":10809,"listen":"127.0.0.1","protocol":"http","sniffing":{"enabled":true,"destOverride":["http","tls","quic"]}}
+    ],
+    "outbounds": [
+      {
+        "tag": "proxy",
+        "protocol": "shadowsocks",
+        "settings": {"servers":[{"address":"example.invalid","port":443,"method":"aes-256-gcm","password":"testpass"}]}
+      },
+      {"tag":"direct","protocol":"freedom"},
+      {"tag":"block","protocol":"blackhole"}
+    ]
   }
 ]
